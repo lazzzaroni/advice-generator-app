@@ -18,6 +18,7 @@ export default function Container() {
       const response = await axios.get("https://api.adviceslip.com/advice");
       return response.data as ApiData;
     },
+    refetchOnWindowFocus: false,
   });
 
   if (isError) {
@@ -30,7 +31,7 @@ export default function Container() {
       >
         <p
           className={cn(
-            " text-center text-2xl font-bold leading-snug",
+            "text-center text-2xl font-bold leading-snug",
             "md:w-4/5 md:text-[28px] md:leading-tight"
           )}
         >
@@ -61,15 +62,15 @@ export default function Container() {
           "md:text-[28px] md:leading-tight"
         )}
       >
-        {isLoading ? "Loading..." : <span>{data?.slip.advice}</span>}
+        {isLoading ? "Loading..." : <span>“{data?.slip.advice}”</span>}
       </p>
       <picture className={cn("mb-4 mt-6", "md:mb-6 md:mt-10")}>
         <source
           media="(min-width:768px)"
-          srcSet="/pattern-divider-desktop.svg"
+          srcSet="/advice-generator-app/pattern-divider-desktop.svg"
         />
         <img
-          src="/pattern-divider-mobile.svg"
+          src="/advice-generator-app/pattern-divider-mobile.svg"
           alt=""
           className="h-auto w-full"
         />
@@ -81,7 +82,7 @@ export default function Container() {
         onClick={() => refetch()}
       >
         <Image
-          src="/icon-dice.svg"
+          src="/advice-generator-app/icon-dice.svg"
           width={0}
           height={0}
           alt=""
